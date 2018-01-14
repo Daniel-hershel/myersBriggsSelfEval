@@ -8,11 +8,12 @@ html {
 }
 body {
   background-color: #FFFFF8;
-  /* font-family: 'Permanent Marker', cursive; */
-  font-family: 'Anton', sans-serif;
+  /*font-family: 'Anton', sans-serif;*/
+  font-family: 'Oswald', sans-serif;
   font-size: 16px;
   width: 99%;
   margin: auto;
+  text-transform: uppercase;
 }
 @media (max-width: 599px) {
 body {
@@ -30,40 +31,34 @@ body {
   display: grid;
   grid-template-columns: 49vw 49vw;
   grid-gap: .5em;
-  width: 99vw;
-  margin: auto;
+  width: 100vw;
   height: 100vh;
-  /*background-color: rgba(68, 68, 68, .3);*/
 }
 
-.ourCohort{
-font-size: 1.5em;
-width: 48vw;
-height: 50vh;
-
+.perPerson{
 
 }
 
 .title{
 grid-row:1/span 1;
 grid-column:2/span 1;
+font-size: 250%;
+color: #51A9AB;
 }
 
-.cohort{
+.cohortMember{
 display: grid;
-grid-template-rows: 20vh 30vh;
+grid-template-rows: 18vh 33vh;
 grid-template-columns: 34vw 14vw;
-border: 2px solid rgba(79, 0, 16, .3);
-/*background-color: rgba(79, 0, 16, .3);*/
+border: .5em solid #51A9AB;
 height: 48vh;
-
 }
 img {
 width: 65%;
 }
 
 #coleImage{
-width: 55%;
+height: 90%;
 }
 
 #dsbImage{
@@ -71,12 +66,10 @@ width: 55%;
 }
 
 #nataliaImage{
-/*width: 45%;*/
 }
 .ogScore{
 grid-row: 1/ span 1;
 grid-column:1/ span 1;
-
 }
 
 .selfScore{
@@ -86,71 +79,103 @@ grid-column:1/span 2;
 }
 
 .scoreHolder{
-border: 1px solid rgba(68, 68, 68, .2);
-height: 4.5vh;
-width: 100%;
+border: 1px solid rgba(68, 68, 68, .1);
+display: grid;
+grid-template-columns: 25% 45% 25%;
+grid-template-rows: 40% 60%;
+height: 5vh;
+width: 95%;
+/*grid-gap: .5em;*/
 margin: auto;
 margin-bottom: .5em;
-/*display: inline-block;*/
 border-radius: 16px;
-
-
+/*background-color: #FFFFFF;*/
+background-color: #51A9AB;
 }
 
-.right{
-float: right;
-margin-top: -.5vh;
-
-margin-right: 1vw;
+.rightValue{
+grid-row:2/2;
+grid-column:3/3;
+padding-right:1.5em;
+text-align: left;
 }
 
 .rightTitle{
-  float: right;
-margin-top: -1.2vh;
-margin-right: 1vw;
+grid-row:1/1;
+grid-column:3/3;
+margin-right:.5em;
+text-align: center;
 }
 
-/*.left{
-  float: left;
-}*/
-/*input[type="range"]{
+.leftTitle{
+grid-row: 1/1;
+grid-column: 1/1;
+}
 
-width: 49%;
-margin-left: 10%;
-height: 10%;
+.left-value{
+grid-row:2/2;
+grid-column: 1/1;
+margin: 0;
+padding-left:.5em;
+text-align: center;
+}
 
-}*/
+span {
+font-size: 65%;
+background-color: #FFFFFF;
+border-radius: 50%;
+padding: .3em;
+border: 0em solid #51A9AB;
+margin-left: .5em;
+width: 3vh;
+height:3vh;
+color:#000;
+font-size:1.3em ;
+/*line-height: .1em;*/
+}
 
+
+h1{
+color: #51A9AB;
+font-family: 'Oswald', sans-serif;
+font-size: 300%;
+padding: 3em;
+text-align: center;
+}
+
+h2{
+/*font-size: 61%;*/
+  color: #ffffff;
+  padding-left: .5em;
+
+}
 /*Chrome*/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     input[type='range'] {
       overflow: hidden;
-      margin-left: 10%;
-
+      grid-row:1/span 2;
+      grid-column:2/2;
       /*width: 80px;*/
-      width: 49%;
-      /*height: 10%;*/
-
+      width: 99%;
+      height: 100%;
       -webkit-appearance: none;
-      background-color: fffff89a905d;
+      background-color: #fffff8;
     }
     
     input[type='range']::-webkit-slider-runnable-track {
-      height: 10px;
+      height: 35px;
       -webkit-appearance: none;
       color: #13bba4;
-      margin-top: -1px;
+      /*margin-top: -1px;*/
     }
     
     input[type='range']::-webkit-slider-thumb {
-      width: 10px;
+      width: 50px;
       -webkit-appearance: none;
-      height: 10px;
+      height: 35px;
       cursor: ew-resize;
-      background: rgba(67, 67, 67, .4);
-      /*box-shadow: -80px 0 0 80px #43e5f7;*/
+      background: rgba(67, 67, 67, .9);
       box-shadow: 80px 0 0 80px #51A9AB;
-      box-shadow: 0 80px 0 80px #51A9AB;
     }
 
 }
@@ -159,7 +184,7 @@ input[type="range"]::-moz-range-progress {
   background-color: #43e5f7; 
 }
 input[type="range"]::-moz-range-track {  
-  background-color: fffff89a905d;
+  background-color: #51A9AB;
 }
 /* IE*/
 input[type="range"]::-ms-fill-lower {
@@ -169,29 +194,3 @@ input[type="range"]::-ms-fill-upper {
   background-color: #fffff8;
 }
 
-
-span {
-font-size: 65%;
-margin-left: 5%;
-background-color: #51A9AB;
-border-radius: 50%;
-padding: .5em;
-/*width: 4vh;
-height: 4vh;*/
-
-}
-
-
-h1{
-color: #444;
-font-family: 'Oswald', sans-serif;
-font-size: 200%;
-text-align: center;
-}
-
-h2{
-font-size: 61%;
-/*width: 95%;*/
-/*padding: .3em;*/
-
-}

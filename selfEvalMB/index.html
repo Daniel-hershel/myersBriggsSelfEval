@@ -3,20 +3,17 @@
 <head>
 <meta charset="utf-8">
 <title>MBTI SelfEval</title>
+
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Oswald:300,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+
+<!-- Vue -->
 <script src=" https://cdn.jsdelivr.net/npm/vue"></script>
 
 
-<script src="https://unpkg.com/v-tooltip"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/vue-directive-tooltip@latest/css/index.min.css">
-<script src="https://nightcatsama.github.io/vue-slider-component/dist/index.js"></script>
-
 <!-- Firebase -->
-<!-- <script src="https://gstatic.com/firebasejs/4.0.0/firebase.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
 
 
@@ -25,115 +22,105 @@
 
 <link href="https://fonts.googleapis.com/css?family=Oswald:300,500,600,700" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-
 <!-- icons -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+
 <link rel = "stylesheet" href= "reset.css">
-<!-- <link rel = "stylesheet" href= "tooltipStyle.css"> -->
 <link rel = "stylesheet" href= "style.css">
 
 </head>
 
 <body>
 
-	<h1> MBTI SELF EVALUATION </h1>
+<div id = "app">
+<h1> MBTI SELF EVALUATION </h1>
+
+<div class = "perPerson" v-for="entry in source">
+
+<div class = "cohortMember">
+<duv class = "title"> {{entry.name}} </duv>
+<div class = "ogScore">
+
+<img v-bind:id = "entry.imgId" v-bind:src ="entry.image">
+</div>
+
+<!-- Scales -->
+<div class = "selfScore">
+
+<!-- E/I -->
+<div class = "scoreHolder">
+
+<h2 class = "leftTitle"> Extroverted</h2>
+<span class = "leftValue" v-text="entry.selfValOne"></span>
+
+<input class = "selfValOne" v-on:change="showValue(entry, event)" type="range"
+>
+<h2 class = "rightTitle"> Introverted</h2>
+<span class = "rightValue" v-text="100-entry.selfValOne"></span>
+
+</div>
+
+<!-- I/O -->
+<div class = "scoreHolder">
+<h2 class = "left"> Intuitive</h2>
+
+<span class = "leftValue" v-text="entry.selfValTwo"></span>
+
+<input class = "selfValTwo" v-on:change="showValue(entry, event)" type="range">
+
+<h2 class = "rightTitle"> Observent</h2>
+
+<span class = "rightValue" v-text="100-entry.selfValTwo"></span>
+
+</div>
+
+<!-- T/F -->
+<div class = "scoreHolder">
+<h2 class = "left"> Thinking</h2>
+
+<span class = "leftValue" v-text="entry.selfValThree"></span>
+
+<input class = "selfValThree" v-on:change="showValue(entry, event)" type="range">
+
+<h2 class = "rightTitle"> Feeling</h2>
+
+<span class = "rightValue" v-text="100-entry.selfValThree"></span>
+
+</div>
+
+<!-- J/P -->
+<div class = "scoreHolder">
+<h2 class = "leftTitle"> Judging</h2>
+
+<span class = "leftValue" v-text="entry.selfValFour"></span>
+
+<input class = "selfValFour" v-on:change="showValue(entry, event)" type="range">
+
+<h2 class = "rightTitle"> Prospecting</h2>
+
+<span class = "rightValue" v-text="100-entry.selfValFour"></span>
+
+</div>
+
+<!-- A/T -->
+<div class = "scoreHolder">
+<h2 class = "leftTitle"> Assertive</h2>
+
+<span class = "leftValue" v-text="entry.selfValFive"></span>
+
+<input class = "selfValFive" v-on:change="showValue(entry, event)" type="range">
+<h2 class = "rightTitle"> Turbulent</h2>
+
+<span class = "rightValue" v-text="100-entry.selfValFive"></span>
+
+</div>
 
 
-	<div id = "app">
+</div> <!-- end self score section -->
+</div> <!-- end cohortMember -->
+</div> <!-- end perPerson -->
 
-	 <div class = "ourCohort" v-for="entry in source">
-
-	 	<div class = "cohort" >
-	 	<duv class = "title"> {{entry.name}} </duv>
-        <!-- <div class = "ogScore"> {{entry.ogScores}}</div> -->
-        <div class = "ogScore"> 
-        	
-        	<img v-bind:id = "entry.imgId" v-bind:src ="entry.image"> 
-        </div>
-        
-        <div class = "selfScore"> 
-        	 <!-- <vue-slider  ref="slider" v-model="entry.name+ 'SelfValOne'"></vue-slider> -->
-        	 <!-- <vue-slider v-on:change="showValue" type="range" ref="slider"  v-model="entry.name + 'SelfValOne'"></vue-slider> -->
-        	 <!-- <vue-slider  ref="slider" v-model="dsb"></vue-slider> -->
-        	 <!-- <vue-slider  ref="slider" class = "selfValOne" v-on:change="showValue(entry, event)" type="range" ></vue-slider> -->
-
-        	 <div class = "scoreHolder">
-        	 <h2 class = "left"> Extroverted</h2>	
-        	 <span class = "left" v-text="100-entry.selfValOne"></span>
-
-        	 <input class = "selfValOne" v-on:change="showValue(entry, event)" type="range"
-        	 >
-        	 <h2 class = "right rightTitle"> Introverted</h2>	
-
-        	 <span class = "right" v-text="entry.selfValOne"></span>
-
-        	</div>
-        	<div class = "scoreHolder">
-        	 <h2 class = "left"> Intuitive</h2>	
-
-        	 <span v-text="100-entry.selfValTwo"></span>
-
-        	 <input class = "selfValTwo" v-on:change="showValue(entry, event)" type="range">
-
-        	 <h2 class = "rightTitle"> Observent</h2>	
-
-        	 <span class = "right" v-text="entry.selfValTwo"></span>
-
-        	</div>
-        	<div class = "scoreHolder">
-        	 <h2 class = "left"> Feeling</h2>	
-
-        	 <span v-text="100-entry.selfValThree"></span>
-
-        	 <input class = "selfValThree" v-on:change="showValue(entry, event)" type="range">
-        	 
-        	 <h2 class = "rightTitle"> Thinking</h2>	
-
-        	 <span class = "right" v-text="entry.selfValThree"></span>
-
-        	</div>
-        	<div class = "scoreHolder">
-        	 <h2 class = "left"> Judging</h2>	
-
-        	 <span v-text="100-entry.selfValFour"></span>
-
-        	 <input class = "selfValFour" v-on:change="showValue(entry, event)" type="range">
-        	 <h2 class = "rightTitle"> Prospecting</h2>	
-
-        	 <span class = "right" v-text="entry.selfValFour"></span>
-
-        	</div>
-        	<div class = "scoreHolder">
-        	 <h2 class = "left"> Assertive</h2>	
-
-        	 <span v-text="100-entry.selfValFive"></span>
-
-        	 <input class = "selfValFive" v-on:change="showValue(entry, event)" type="range">
-        	 <h2 class = "rightTitle"> Turbulent</h2>	
-
-        	 <span class = "right" v-text="entry.selfValFive"></span>
-
-        	</div>
-        	 <!-- <input class = "selfValOne" v-on:change="showValue(entry, event)" type="range" v-model="dsbSelfValOne"> -->
-
- <!-- make a buton on press it saves values to database -->
-
-        	 <!-- <input class = "selfValOne" v-on:change="showValue(entry, event)" type="range" v-model="entry.name + 'SelfValOne'"> -->
-        	 <!-- <input v-on:change="showValue" type="range" v-model="dsb"> -->
-
-        	 <!-- <vue-slider ref="slider" v-on:change="showValue" v-model="valueTwo"></vue-slider> -->
-        	<!--  <vue-slider ref="slider" v-model="valueThree"></vue-slider>
-        	 <vue-slider ref="slider" v-model="valueFour"></vue-slider>
-        	 <vue-slider ref="slider" v-model="valueFive"></vue-slider> -->
-<!-- <input type="number" v-model="value"/> -->
- 
-<!-- <span v-text="total"></span> -->
-</div> </div>
-	   </div>
-
-
-	 </div>
-	</div>
+</div> <!-- end app -->
 
 
 <script src = "app.js"></script>

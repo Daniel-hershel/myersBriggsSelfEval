@@ -22,9 +22,7 @@ let databaseUrl = db.ref("cohort");
 
 var app = new Vue({
    el: "#app",
-  //    components: {
-  //   vueSlider
-  // },
+
   data() {
     return {
       
@@ -34,9 +32,6 @@ var app = new Vue({
       coleSelfValFour: 50,
       coleSelfValFive: 50,
       dsb: 85,
-      // dsbSelfValOne: function(){
-      //   return 90
-      // },
       dsbSelfValTwo: 50,
       dsbSelfValThree: 50,
       dsbSelfValFour: 50,
@@ -46,11 +41,7 @@ var app = new Vue({
       nataliaSelfValThree: 50,
       nataliaSelfValFour: 50,
       nataliaSelfValFive: 50,
-      valueTwo: 70,
-      // valueThree: 50,
-      // valueFour: 50,
-      // valueFive: 50
-     
+    
     };
   },
 firebase: function () {
@@ -62,7 +53,6 @@ firebase: function () {
   methods: {
     showScores: function() {
 
-
       },
 
     showValue: function(entry, event){
@@ -70,41 +60,21 @@ firebase: function () {
        let entryKey = entry['.key']
        let whichOne = event.srcElement.className
        let newValue = event.srcElement.value
-       // let whichOne = event.srcElement.className.toString()
-       // console.log(entryKey)
 
-     
-      console.log(event.srcElement.value)
-      //I want the 
-      console.log(event)
-      // console.log(entry.value)
-        databaseUrl.child(entry['.key']).child(whichOne).set(newValue);
+      // console.log(event.srcElement.value)
+      // console.log(event)
 
-      // set the value of the db entry key.
+      databaseUrl.child(entry['.key']).child(whichOne).set(newValue);
 
     }
 
     }, //end methods
-      computed: {
-      dsbSelfValOne: function () {
-      // return  
-      // return the db entry for dsbSelfValOne
-      console.log('working')
-      
-
-      return 10 
-    }
-  },
+     
   created: function() {
     console.log(this)
     console.log(databaseUrl)
-      // console.log(this.dsbSelfValOne)
-
-    // console.log(this.poems)
     
   },
-   components: {
-    'vueSlider': window[ 'vue-slider-component' ],
-  }
+ 
 
   })
